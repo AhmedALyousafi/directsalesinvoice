@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pos_system/core/constants/app_constants.dart';
 import 'package:pos_system/core/theme/app_colors.dart';
 import 'package:pos_system/core/widgets/app_button.dart';
@@ -45,7 +46,7 @@ class SidePanel extends StatelessWidget {
                         },
                         color: AppColors.success,
                         width: 35,
-                        height: 40,
+                        height: 35,
                         child: const Icon(
                           Icons.arrow_right_alt_sharp,
                           color: AppColors.surface,
@@ -66,9 +67,10 @@ class SidePanel extends StatelessWidget {
                             },
                             color: AppColors.border,
                             width: 35,
-                            height: 40,
+                            height: 35,
                             child: const Icon(
-                              Icons.settings_ethernet_sharp,
+                              (FontAwesomeIcons.downLeftAndUpRightToCenter),
+                              size: 16,
                               color: Colors.black,
                             ),
                           ),
@@ -77,7 +79,6 @@ class SidePanel extends StatelessWidget {
                     ],
                   ),
                 ),
-                const Divider(height: 1),
                 Expanded(
                   child: ListView(
                     padding: const EdgeInsets.all(AppConstants.defaultSpacing),
@@ -94,16 +95,16 @@ class SidePanel extends StatelessWidget {
                         context,
                         'المبلغ النقدي',
                         '0.00',
-                        AppColors.disabled,
-                        AppColors.background,
+                        Color(0xff474747),
+                        Color(0xffE2E2E2),
                       ),
                       const SizedBox(height: AppConstants.defaultSpacing),
                       _buildAmountCard(
                         context,
                         'مبلغ البطاقة',
                         '0.00',
-                        AppColors.disabled,
-                        AppColors.background,
+                        Color(0xff474747),
+                        Color(0xffE2E2E2),
                       ),
                       const SizedBox(height: AppConstants.defaultSpacing),
                       _buildAmountCard(
@@ -134,7 +135,7 @@ class SidePanel extends StatelessWidget {
                       const SizedBox(height: AppConstants.defaultSpacing),
                       AppButton(
                         onPressed: () {},
-                        color: AppColors.primary,
+                        color: Color(0xff0C69C0),
                         width: 101,
                         height: 35,
                         child: const Icon(
@@ -149,7 +150,7 @@ class SidePanel extends StatelessWidget {
                               .read<InvoiceCubit>()
                               .changesettingMultiablePayment();
                         },
-                        color: const Color.fromARGB(255, 141, 185, 227),
+                        color: const Color(0xFFD2ECFC),
                         width: 101,
                         height: 35,
                         child: const Icon(
@@ -182,7 +183,7 @@ class SidePanel extends StatelessWidget {
                       const SizedBox(height: AppConstants.defaultSpacing),
                       AppButton(
                         onPressed: () => _showBeneficiaryScreen(context),
-                        color: Color.fromARGB(255, 141, 185, 227),
+                        color: Color(0xffEBF9FF),
                         width: 101,
                         height: 35,
                         child: const Icon(

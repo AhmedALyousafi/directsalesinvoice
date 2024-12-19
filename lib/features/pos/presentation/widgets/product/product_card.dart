@@ -27,9 +27,8 @@ class _ProductCardState extends State<ProductCard> {
     return BlocBuilder<InvoiceCubit, InvoiceState>(
       builder: (context, state) {
         return MouseRegion(
-          onEnter: (_) => setState(() => isHovered = true), // عند التحويم
-          onExit: (_) =>
-              setState(() => isHovered = false), // عند الخروج من التحويم
+          onEnter: (_) => setState(() => isHovered = true),
+          onExit: (_) => setState(() => isHovered = false),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 300),
             decoration: BoxDecoration(
@@ -66,7 +65,6 @@ class _ProductCardState extends State<ProductCard> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          // الإيقونتان على اليمين
                           Row(
                             children: [
                               if (widget.itemModel.itemId == 'نفذ المخزون') ...[

@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pos_system/cubit/cubit.dart';
@@ -57,11 +58,12 @@ class ProductEmptyState extends StatelessWidget {
                         ),
                       ],
                       if (state.plutogridwidget)
-                        const Expanded(child: PlutoGridWidget()),
+                        Expanded(child: PlutoGridWidget()),
                     ],
                   ),
                 ),
               ),
+              const Divider(height: 0.5),
               _buildFooter(),
               Container(
                 height: 3,
@@ -76,39 +78,162 @@ class ProductEmptyState extends StatelessWidget {
 
   Widget _buildFooter() {
     return Container(
-      height: 50,
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       child: Row(
         children: [
-          _buildEditableField(
-            icon: Icons.calendar_today_outlined,
-            label: 'تاريخ الإنتهاء',
+          _buildEditableField2(
+            'تاريخ الإنتهاء',
           ),
           const SizedBox(width: 8),
           _buildEditableField(
-            icon: Icons.pie_chart_outline,
-            label: 'المقطع التحليلي',
+            'المقطع التحليلي',
           ),
         ],
       ),
     );
   }
 
-  Widget _buildEditableField({required String label, required IconData icon}) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Expanded(
-        child: TextField(
-          textAlignVertical: TextAlignVertical.center, // توسيط النص عموديًا
-          decoration: InputDecoration(
-            hintText: label,
-            hintStyle: const TextStyle(
-              fontSize: 13,
-              color: Colors.grey,
-              fontFamily: 'Readex Pro',
+  Widget _buildEditableField(String label) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+        child: Container(
+          height: 40,
+          color: Colors.white,
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: DropdownButtonFormField2<String>(
+              decoration: InputDecoration(
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                      color: Colors.white), // تغيير لون الحدود إلى الأبيض
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide:
+                      BorderSide(color: Colors.white), // إضافة حدود عند التركيز
+                ),
+                contentPadding: EdgeInsets.all(0),
+              ),
+              iconStyleData: IconStyleData(
+                icon: Icon(Icons.keyboard_arrow_down),
+                iconSize: 24,
+              ),
+              hint: Row(
+                mainAxisAlignment:
+                    MainAxisAlignment.end, // محاذاة النص إلى اليمين
+                children: [
+                  Text(
+                    label,
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 12, // حجم الخط الجديد
+                    ),
+                  ),
+                ],
+              ),
+              items: [
+                DropdownMenuItem(
+                  value: "1",
+                  child: Row(
+                    mainAxisAlignment:
+                        MainAxisAlignment.end, // محاذاة النص إلى اليمين
+                    children: [
+                      Text(
+                        "Option 1",
+                        style: TextStyle(fontSize: 12), // حجم الخط الجديد
+                      ),
+                    ],
+                  ),
+                ),
+                DropdownMenuItem(
+                  value: "2",
+                  child: Row(
+                    mainAxisAlignment:
+                        MainAxisAlignment.start, // محاذاة النص إلى اليمين
+                    children: [
+                      Text(
+                        "Option 2",
+                        style: TextStyle(fontSize: 12), // حجم الخط الجديد
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+              onChanged: (value) {},
             ),
-            border: InputBorder.none,
-            isDense: true, // يقلل المساحة الرأسية
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildEditableField2(String label) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+        child: Container(
+          height: 40,
+          color: Colors.white,
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: DropdownButtonFormField2<String>(
+              decoration: InputDecoration(
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                      color: Colors.white), // تغيير لون الحدود إلى الأبيض
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide:
+                      BorderSide(color: Colors.white), // إضافة حدود عند التركيز
+                ),
+                contentPadding: EdgeInsets.all(0),
+              ),
+              iconStyleData: IconStyleData(
+                icon: Icon(Icons.calendar_month_outlined),
+                iconSize: 24,
+              ),
+              hint: Row(
+                mainAxisAlignment:
+                    MainAxisAlignment.end, // محاذاة النص إلى اليمين
+                children: [
+                  Text(
+                    label,
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 12, // حجم الخط الجديد
+                    ),
+                  ),
+                ],
+              ),
+              items: [
+                DropdownMenuItem(
+                  value: "1",
+                  child: Row(
+                    mainAxisAlignment:
+                        MainAxisAlignment.end, // محاذاة النص إلى اليمين
+                    children: [
+                      Text(
+                        "Option 1",
+                        style: TextStyle(fontSize: 12), // حجم الخط الجديد
+                      ),
+                    ],
+                  ),
+                ),
+                DropdownMenuItem(
+                  value: "2",
+                  child: Row(
+                    mainAxisAlignment:
+                        MainAxisAlignment.start, // محاذاة النص إلى اليمين
+                    children: [
+                      Text(
+                        "Option 2",
+                        style: TextStyle(fontSize: 12), // حجم الخط الجديد
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+              onChanged: (value) {},
+            ),
           ),
         ),
       ),

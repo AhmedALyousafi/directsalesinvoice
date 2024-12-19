@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProductsHeader extends StatelessWidget {
   const ProductsHeader({super.key});
@@ -6,34 +7,37 @@ class ProductsHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      child: Row(
-        children: [
-          // زر الإضافة
-          ElevatedButton.icon(
-            onPressed: () {},
-            icon: const Text(
-              '+',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        child: Row(
+          children: [
+            // زر الإضافة
+            ElevatedButton.icon(
+              onPressed: () {},
+              icon: const Text(
+                '+',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              label: const Text('إضافة'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF319626),
+                foregroundColor: Colors.white,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.zero, // جعل الزوايا مربعة
+                ),
+              ),
             ),
-            label: const Text('إضافة'),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF319626),
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            const SizedBox(width: 10),
+            // حقل الكمية
+            _buildQuantityField(),
+            const SizedBox(width: 10),
+            // حقل الباركود
+            Expanded(
+              child: _buildBarcodeField(),
             ),
-          ),
-          const SizedBox(width: 10),
-          // حقل الكمية
-          _buildQuantityField(),
-          const SizedBox(width: 10),
-          // حقل الباركود
-          Expanded(
-            child: _buildBarcodeField(),
-          ),
-        ],
-      ),
-    );
+          ],
+        ));
   }
 
   Widget _buildQuantityField() {
@@ -43,7 +47,6 @@ class ProductsHeader extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(4),
-        border: Border.all(color: const Color(0xFFDADADA)), // حدود الحقل
       ),
       child: SizedBox(
         width: 100,
@@ -78,14 +81,12 @@ class ProductsHeader extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(4),
-        border: Border.all(color: const Color(0xFFDADADA)), // حدود الحقل
       ),
       child: Row(
         children: [
           // أيقونة الباركود في المكان المحدد
           const Icon(
-            Icons.qr_code,
-            color: Color(0xFF819AA7),
+            FontAwesomeIcons.barcode,
             size: 20,
           ),
           const SizedBox(width: 8),

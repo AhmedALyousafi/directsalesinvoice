@@ -20,15 +20,15 @@ class _CategoryBarState extends State<CategoryBar> {
   }
 
   List<Map<String, dynamic>> categories = [
-    {'title': 'العناية بالمنزل وأدوات التنظيف', 'isHighlighted': false},
-    {'title': 'كشتات', 'isHighlighted': false},
-    {'title': 'العناية الشخصية', 'isHighlighted': false},
-    {'title': 'أواني الطهي وأدوات المطبخ', 'isHighlighted': false},
-    {'title': 'المعالق والسكاكين', 'isHighlighted': false},
-    {'title': 'الترامس وتقديمات الضيافة', 'isHighlighted': false},
-    {'title': 'الأجهزة المنزلية', 'isHighlighted': false},
-    {'title': 'اجهزة كهربائية', 'isHighlighted': false},
     {'title': 'الاكثر مبيعا', 'isHighlighted': true},
+    {'title': 'اجهزة كهربائية', 'isHighlighted': false},
+    {'title': 'الأجهزة المنزلية', 'isHighlighted': false},
+    {'title': 'الترامس وتقديمات الضيافة', 'isHighlighted': false},
+    {'title': 'المعالق والسكاكين', 'isHighlighted': false},
+    {'title': 'أواني الطهي وأدوات المطبخ', 'isHighlighted': false},
+    {'title': 'العناية الشخصية', 'isHighlighted': false},
+    {'title': 'كشتات', 'isHighlighted': false},
+    {'title': 'العناية بالمنزل وأدوات التنظيف', 'isHighlighted': false},
   ];
 
   String currentSearchQuery = ''; // النص الذي يتم البحث فيه
@@ -42,56 +42,66 @@ class _CategoryBarState extends State<CategoryBar> {
             .contains(currentSearchQuery.toLowerCase()))
         .toList();
 
-    return Container(
-      height: 35,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(4),
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Row(
-        children: [
-          Container(
-            height: 30,
-            width: 30,
+    return Row(
+      children: [
+        // إضافة الأيقونة هنا على اليسار
+        Container(
+          height: 30,
+          width: 30,
+          decoration: BoxDecoration(
+            color: const Color(0xFF00B4D8),
+            borderRadius: BorderRadius.circular(4),
+          ),
+          child: const Icon(
+            Icons.filter_list_alt,
+            color: Colors.white,
+            size: 20,
+          ),
+        ),
+        const SizedBox(width: 8), // المسافة بين الأيقونة والقائمة
+        Expanded(
+          child: Container(
+            height: 35,
             decoration: BoxDecoration(
-              color: const Color(0xFF00B4D8),
+              color: Colors.white,
               borderRadius: BorderRadius.circular(4),
             ),
-            child: const Icon(
-              Icons.filter_list,
-              color: Colors.white,
-              size: 20,
-            ),
-          ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Scrollbar(
-              controller: _scrollController,
-              thickness: 3,
-              radius: const Radius.circular(4),
-              thumbVisibility: true,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                controller: _scrollController,
-                child: Row(
-                  children: filteredCategories.map((category) {
-                    return GestureDetector(
-                      onTap: () {
-                        widget.onCategorySelected(category['title']);
-                      },
-                      child: _buildCategoryItem(
-                        category['title'],
-                        isHighlighted: category['isHighlighted'],
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: Scrollbar(
+                      controller: _scrollController,
+                      thickness: 3,
+                      radius: const Radius.circular(4),
+                      thumbVisibility: true,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        controller: _scrollController,
+                        child: Row(
+                          children: filteredCategories.map((category) {
+                            return GestureDetector(
+                              onTap: () {
+                                widget.onCategorySelected(category['title']);
+                              },
+                              child: _buildCategoryItem(
+                                category['title'],
+                                isHighlighted: category['isHighlighted'],
+                              ),
+                            );
+                          }).toList(),
+                        ),
                       ),
-                    );
-                  }).toList(),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

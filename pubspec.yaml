@@ -38,6 +38,7 @@ dependencies:
   flutter_bloc: ^8.1.6
   pluto_grid: ^8.0.0
   font_awesome_flutter: ^10.1.0
+  dropdown_button2: ^2.3.9
 
 dev_dependencies:
   flutter_test:

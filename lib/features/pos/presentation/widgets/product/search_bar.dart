@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class SearchBar1 extends StatelessWidget {
@@ -61,10 +63,15 @@ class SearchBar1 extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.search,
-                      color: Color(0xFF819AA7),
-                      size: 20,
+                    SizedBox(width: 8),
+                    Transform(
+                      alignment: Alignment.center,
+                      transform: Matrix4.rotationY(pi),
+                      child: Icon(
+                        Icons.search,
+                        color: Color(0xFF819AA7),
+                        size: 20,
+                      ),
                     ),
                     Expanded(
                       child: TextField(

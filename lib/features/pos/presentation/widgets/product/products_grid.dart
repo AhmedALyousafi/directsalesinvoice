@@ -192,62 +192,64 @@ class _ProductGridState extends State<ProductGrid> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: const Color(0xFFF1F9FF),
-      ),
-      padding: EdgeInsets.all(AppConstants.defaultPadding),
-      child: Column(
-        children: [
-          CategoryBar(
-            onCategorySelected: (category) {
-              setState(() {
-                currentCategory = category;
-              });
-            },
-          ),
-          const SizedBox(height: 8),
-          SearchBar1(
-            showImages: showImages,
-            onToggleShowImages: () {
-              setState(() {
-                showImages = !showImages; // تبديل الحالة
-              });
-            },
-            onSearch: (query) {
-              setState(() {
-                searchQuery = query;
-              });
-            },
-          ),
-          const SizedBox(height: 8),
-          Expanded(
-            child: Directionality(
-              textDirection: TextDirection.rtl,
-              child: GridView.count(
-                shrinkWrap: true,
-                crossAxisCount: 3, // عدد الأعمدة
-                mainAxisSpacing: 12, // المسافة بين الصفوف
-                crossAxisSpacing: 8, // المسافة بين الأعمدة
-                childAspectRatio: showImages
-                    ? 163 / 215
-                    : 167.67 / 110, // نسبة العرض إلى الطول
-                children: List.generate(
-                  filteredItems.length,
-                  (index) => SizedBox(
-                    width: 176, // العرض
-                    height: 205, // الطول
-                    child: ProductCard(
-                      itemModel: filteredItems[index],
-                      showImage: showImages, // حالة عرض الصور
+    return Expanded(
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: const Color(0xFFF1F9FF),
+        ),
+        padding: EdgeInsets.all(AppConstants.defaultPadding),
+        child: Column(
+          children: [
+            CategoryBar(
+              onCategorySelected: (category) {
+                setState(() {
+                  currentCategory = category;
+                });
+              },
+            ),
+            const SizedBox(height: 8),
+            SearchBar1(
+              showImages: showImages,
+              onToggleShowImages: () {
+                setState(() {
+                  showImages = !showImages; // تبديل الحالة
+                });
+              },
+              onSearch: (query) {
+                setState(() {
+                  searchQuery = query;
+                });
+              },
+            ),
+            const SizedBox(height: 8),
+            Expanded(
+              child: Directionality(
+                textDirection: TextDirection.rtl,
+                child: GridView.count(
+                  shrinkWrap: true,
+                  crossAxisCount: 3, // عدد الأعمدة
+                  mainAxisSpacing: 12, // المسافة بين الصفوف
+                  crossAxisSpacing: 8, // المسافة بين الأعمدة
+                  childAspectRatio: showImages
+                      ? 163 / 215
+                      : 167.67 / 110, // نسبة العرض إلى الطول
+                  children: List.generate(
+                    filteredItems.length,
+                    (index) => SizedBox(
+                      width: 176, // العرض
+                      height: 205, // الطول
+                      child: ProductCard(
+                        itemModel: filteredItems[index],
+                        showImage: showImages, // حالة عرض الصور
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
